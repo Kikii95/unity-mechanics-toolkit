@@ -1,0 +1,22 @@
+{
+  "name": "com.devkit.unity-mechanics-toolkit",
+  "version": "0.1.0",
+  "displayName": "Unity Mechanics Toolkit",
+  "description": "Collection of reusable game mechanics for Unity projects (Movement, Interaction, Inventory, Combat, AI, and more)",
+  "unity": "2021.3",
+  "keywords": [
+    "mechanics",
+    "toolkit",
+    "movement",
+    "interaction",
+    "inventory",
+    "combat",
+    "utilities"
+  ],
+  "author": {
+    "name": "DevKit",
+    "url": "https://github.com/yourusername"
+  },
+  "type": "library",
+  "dependencies": {}
+}

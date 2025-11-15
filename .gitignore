@@ -1,0 +1,53 @@
+# Unity specific
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity Package Manager
+/[Pp]ackages/manifest.json
+/[Pp]ackages/packages-lock.json
+
+# Visual Studio / Rider
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# Unity generated
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.mdb
+bin/
+obj/
+
+# Exceptions - keep example dlls if needed
+!examples/**/*.dll
+
+# Environment
+.env
+.env.local
+*.log
