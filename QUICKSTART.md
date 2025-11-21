@@ -1,158 +1,375 @@
-# Quick Start Guide
+# Unity Mechanics Toolkit - Quick Start Guide
 
-## Installation
+**Get started in 5 minutes with automatic demo scenes and ready-to-use components.**
 
-### Method 1: Unity Package Manager (UPM)
+---
+
+## 🚀 Installation
+
+### Method 1: Unity Package Manager (Recommended)
 
 1. Open your Unity project
-2. Go to `Window` → `Package Manager`
-3. Click `+` button → `Add package from git URL`
+2. Window → Package Manager
+3. Click `+` → Add package from git URL
 4. Enter: `https://github.com/yourusername/unity-mechanics-toolkit.git`
 5. Click `Add`
 
-### Method 2: Manual Installation
+### Method 2: Manual Import
 
-1. Clone or download this repository
-2. Copy the `src/` folder to `Assets/UnityMechanicsToolkit/` in your Unity project
-3. Wait for Unity to compile
+1. Download the toolkit
+2. Copy `src/` folder to your Unity project's `Assets/` folder
+3. Unity will auto-import and compile
 
-## Basic Usage Examples
+---
 
-### Movement System
+## ⚡ Fastest Way to Test: Auto-Generate Demo Scenes
 
-```csharp
-using UnityMechanicsToolkit.Movement;
+### Option 1: Complete Horror Showcase (Recommended)
 
-public class PlayerController : MonoBehaviour
-{
-    private FirstPersonController controller;
-
-    void Start()
-    {
-        controller = GetComponent<FirstPersonController>();
-        controller.moveSpeed = 5f;
-        controller.jumpForce = 10f;
-    }
-}
+```
+Tools > Unity Mechanics Toolkit > Create Demo Scenes > Horror Showcase (Complete)
 ```
 
-### Interaction System
+**What you get**:
+- Fully configured player (movement, flashlight, sanity, combat)
+- Patrolling AI enemy
+- Doors, keys, hiding spots
+- Dark horror atmosphere
+- Ready to play!
 
-```csharp
-using UnityMechanicsToolkit.Interaction;
+**Manual steps required**:
+1. Mark static objects as Navigation Static
+2. Bake NavMesh (Window → AI → Navigation → Bake)
+3. Wire a few events (see console instructions)
+4. Press Play!
 
-public class Door : InteractableObject
-{
-    public override void OnInteract(GameObject interactor)
-    {
-        // Open door logic
-        Debug.Log("Door opened!");
-    }
-}
+### Option 2: Test Individual Systems
+
+**Player Movement**:
+```
+Tools > Unity Mechanics Toolkit > Create Demo Scenes > Player Complete Setup
+→ Press Play → Use WASD + Mouse
 ```
 
-### Inventory System
-
-```csharp
-using UnityMechanicsToolkit.Inventory;
-
-public class PlayerInventory : MonoBehaviour
-{
-    private InventorySystem inventory;
-
-    void Start()
-    {
-        inventory = new InventorySystem(20); // 20 slots
-    }
-
-    public void PickupItem(Item item)
-    {
-        if (inventory.AddItem(item))
-        {
-            Debug.Log($"Picked up {item.name}");
-        }
-    }
-}
+**AI Enemy**:
+```
+Tools > Unity Mechanics Toolkit > Create Demo Scenes > AI Enemy Setup
+→ Bake NavMesh → Wire events → Press Play
 ```
 
-### Combat System
-
-```csharp
-using UnityMechanicsToolkit.Combat;
-
-public class Enemy : MonoBehaviour
-{
-    private Health health;
-
-    void Start()
-    {
-        health = GetComponent<Health>();
-        health.maxHealth = 100f;
-        health.OnDeath += HandleDeath;
-    }
-
-    void HandleDeath()
-    {
-        Debug.Log("Enemy died!");
-        Destroy(gameObject);
-    }
-}
+**Interaction Systems**:
+```
+Tools > Unity Mechanics Toolkit > Create Demo Scenes > Interaction Systems
+→ Press Play → Look at objects → Press E
 ```
 
-## Module Overview
+**Combat**:
+```
+Tools > Unity Mechanics Toolkit > Create Demo Scenes > Combat Systems
+→ Press Play → Left Click to attack dummies
+```
 
-### Movement
-- **FirstPersonController**: Complete FPS movement
-- **ThirdPersonController**: Third-person character control
-- **TopDownController**: Top-down 2D/3D movement
-- **JumpMechanics**: Customizable jump behaviors
+---
 
-### Interaction
-- **InteractableObject**: Base class for interactive objects
-- **RaycastInteractor**: Raycast-based interaction
-- **TriggerInteractor**: Trigger-based interaction
-- **DoorController**: Configurable door mechanics
+## 📦 Manual Integration (Step-by-Step)
 
-### Inventory
-- **InventorySystem**: Main inventory manager
-- **Item**: Base item class
-- **Equipment**: Equipment-specific items
-- **InventoryUI**: UI integration
+### Create a Horror Game Player (5 minutes)
 
-### Combat
-- **Health**: Health management system
-- **DamageDealer**: Damage calculation
-- **Weapon**: Weapon base class
-- **Projectile**: Projectile physics
+**Tutorial**: [TUTORIAL_01_PLAYER_SETUP.md](tutorials/TUTORIAL_01_PLAYER_SETUP.md)
 
-### AI
-- **AIStateMachine**: Flexible state machine
-- **PatrolBehavior**: Patrol waypoint system
-- **ChaseBehavior**: Target following
-- **VisionCone**: Line-of-sight detection
+**Quick Steps**:
+1. Create Empty GameObject → Name: `Player`
+2. Add CharacterController
+3. Add these components (Unity Mechanics Toolkit menu):
+   - FirstPersonController
+   - StaminaSystem
+   - CrouchBehavior
+   - SprintBehavior
+   - LeanBehavior
+   - FlashlightSystem
+   - SanitySystem
+4. Create child Camera → Add CameraShake, HeadBobbing, LookBehind
+5. Link camera references in Inspector
+6. Press Play!
 
-### Utils
-- **ObjectPool**: Object pooling system
-- **Singleton<T>**: Singleton pattern
-- **ExtensionMethods**: Useful extensions
-- **DebugTools**: Development helpers
+**Controls**: WASD + Mouse, C=Crouch, Shift=Sprint, F=Flashlight, V=LookBehind
 
-## Next Steps
+---
 
-1. Explore the `examples/` folder for complete scene setups
-2. Check individual module documentation in `docs/`
-3. Customize scripts to fit your project needs
+### Create an AI Enemy (10 minutes)
 
-## Troubleshooting
+**Tutorial**: [TUTORIAL_02_ENEMY_AI.md](tutorials/TUTORIAL_02_ENEMY_AI.md)
 
-### Scripts not compiling?
-- Ensure Unity version is 2021.3 or higher
-- Check that all dependencies are installed
+**Quick Steps**:
+1. Create Capsule → Name: `Enemy`
+2. Add NavMeshAgent
+3. Add these components:
+   - AIStateMachine
+   - VisionCone
+   - PatrolBehavior
+   - ChaseBehavior
+   - Health
+4. Create 4 Empty GameObjects as waypoints
+5. Bake NavMesh (Window → AI → Navigation)
+6. Wire VisionCone events to AIStateMachine
+7. Press Play!
 
-### Missing references?
-- Verify the `src/` folder is correctly placed in `Assets/`
-- Reimport the package if needed
+**Behavior**: Patrols waypoints → Detects player → Chases → Attacks
 
-## Support
+---
 
-For issues or questions, check the GitHub repository issues page.
+### Add Interaction Systems (5 minutes)
+
+**Tutorial**: [TUTORIAL_03_INTERACTION.md](tutorials/TUTORIAL_03_INTERACTION.md)
+
+**Quick Steps**:
+1. Add RaycastInteractor to Player Camera
+2. Create interactable objects:
+   - Door: Add DoorController + HighlightSystem
+   - Key: Add ExamineObject + HighlightSystem
+   - Closet: Add HidingSpot
+3. Wire highlight events to RaycastInteractor
+4. Press Play and press E to interact!
+
+**Features**: Doors, examine 3D objects, hiding spots
+
+---
+
+### Add Combat (5 minutes)
+
+**Tutorial**: [TUTORIAL_04_COMBAT.md](tutorials/TUTORIAL_04_COMBAT.md)
+
+**Quick Steps**:
+1. Add Health to Player
+2. Create weapon (Cube child of Player) → Add MeleeWeapon
+3. Add BlockDodge to Player
+4. Create dummy target → Add Health
+5. Press Play and Left Click to attack!
+
+**Controls**: Left Click=Attack, Right Click=Block, Left Ctrl=Dodge
+
+---
+
+## 🎮 Feature Overview
+
+### Movement Systems (Sprint 1)
+
+| Component | Description | Key Bindings |
+|-----------|-------------|--------------|
+| FirstPersonController | WASD movement + mouse look | WASD, Mouse |
+| StaminaSystem | Stamina resource (sprint/dodge/attack) | Auto |
+| CrouchBehavior | Crouch toggle/hold | C |
+| SprintBehavior | Sprint with stamina drain | Shift |
+| LeanBehavior | Lean left/right (AZERTY) | A/E |
+
+### Horror Systems (Sprint 1)
+
+| Component | Description |
+|-----------|-------------|
+| FlashlightSystem | Battery-powered light with flicker |
+| SanitySystem | Amnesia-style sanity (darkness drains) |
+
+### Camera Systems (Sprint 1)
+
+| Component | Description |
+|-----------|-------------|
+| CameraShake | Screen shake on events |
+| HeadBobbing | Rhythmic walking bob |
+| LookBehind | RE-style 180° camera rotation |
+
+### AI Systems (Sprint 1)
+
+| Component | Description |
+|-----------|-------------|
+| AIStateMachine | State management (Patrol/Chase/Attack) |
+| VisionCone | FOV detection with line of sight |
+| PatrolBehavior | Waypoint patrol with NavMesh |
+| ChaseBehavior | Player chase with attack range |
+
+### Interaction Systems (Sprint 1)
+
+| Component | Description |
+|-----------|-------------|
+| RaycastInteractor | Raycast-based object detection |
+| DoorController | Hinged/sliding doors with locks |
+| ExamineObject | 3D rotate/zoom inspection |
+| HidingSpot | Closet/bed/locker hiding |
+| HighlightSystem | Emission-based object glow |
+
+### Combat Systems (Sprint 1)
+
+| Component | Description |
+|-----------|-------------|
+| Health | HP management with events |
+| MeleeWeapon | Melee attacks with durability |
+| BlockDodge | Block (damage reduction) + Dodge (roll) |
+
+### Audio Systems (Sprint 1)
+
+| Component | Description |
+|-----------|-------------|
+| FootstepSystem | Material-based footstep sounds |
+| HeartbeatAudio | Dynamic heartbeat (sanity/enemies) |
+
+---
+
+## 🎯 Common Workflows
+
+### Workflow 1: Quick Prototype Horror Game
+
+1. Generate Horror Showcase scene (auto)
+2. Bake NavMesh
+3. Wire events
+4. Customize values (speeds, ranges, etc.)
+5. Add your own models/textures
+6. Build gameplay loop
+
+**Time**: 10 minutes to playable prototype
+
+---
+
+### Workflow 2: Integrate into Existing Project
+
+1. Import Unity Mechanics Toolkit
+2. Add desired components to your existing player/enemies
+3. Configure in Inspector
+4. Wire events
+5. Test and iterate
+
+**Time**: 5-15 minutes per system
+
+---
+
+### Workflow 3: Learn and Customize
+
+1. Generate demo scenes
+2. Play and observe behaviors
+3. Read tutorials for detailed explanations
+4. Modify component values
+5. Extend with custom scripts
+
+**Time**: Study at your own pace
+
+---
+
+## 📚 Documentation
+
+### Guides
+
+- [ROADMAP.md](docs/ROADMAP.md) - 200+ planned features
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) - Design principles
+- [INTEGRATION_GUIDE.md](docs/INTEGRATION_GUIDE.md) - Integration examples
+- [DEMO_SCENES_GENERATOR.md](docs/DEMO_SCENES_GENERATOR.md) - Auto scene creation
+- [CREATING_PREFABS.md](docs/CREATING_PREFABS.md) - Reusable prefabs guide
+
+### Tutorials
+
+- [Tutorial 01 - Player Setup](tutorials/TUTORIAL_01_PLAYER_SETUP.md) - Complete player (10 min)
+- [Tutorial 02 - Enemy AI](tutorials/TUTORIAL_02_ENEMY_AI.md) - Patrol/chase AI (15 min)
+- [Tutorial 03 - Interaction Systems](tutorials/TUTORIAL_03_INTERACTION.md) - Doors, keys, hiding (15 min)
+- [Tutorial 04 - Combat Systems](tutorials/TUTORIAL_04_COMBAT.md) - Melee combat (15 min)
+
+---
+
+## 🎨 Customization Tips
+
+### Adjust Movement Feel
+
+```
+Player > FirstPersonController
+- Move Speed: 5 → 7 (faster)
+- Sprint Multiplier: 1.5 → 2 (faster sprint)
+
+Player > CrouchBehavior
+- Crouch Speed: 2 → 5 (instant crouch)
+```
+
+### Adjust AI Difficulty
+
+```
+Enemy > VisionCone
+- Vision Range: 10 → 15 (sees farther)
+- Vision Angle: 90 → 120 (wider FOV)
+
+Enemy > ChaseBehavior
+- Chase Speed: 5 → 7 (faster chase)
+- Give Up Distance: 20 → 30 (chases longer)
+```
+
+### Adjust Horror Intensity
+
+```
+Player > SanitySystem
+- Darkness Drain Rate: 2 → 5 (faster drain)
+- Recovery Rate: 1 → 0.5 (slower recovery)
+
+Player > FlashlightSystem
+- Drain Rate: 5 → 10 (battery drains faster)
+```
+
+---
+
+## ⚠️ Troubleshooting
+
+### "Components not found" error
+- Ensure Unity Mechanics Toolkit is imported
+- Check Console for compilation errors
+- Reimport package if needed
+
+### Enemy doesn't move
+- Bake NavMesh (Window → AI → Navigation → Bake)
+- Mark ground as Navigation Static
+- Check NavMeshAgent component present
+
+### Interactions don't work
+- Check RaycastInteractor on player camera
+- Verify objects have IInteractable components
+- Wire highlight events in Inspector
+
+### Combat doesn't damage
+- Ensure targets have Health component
+- Check weapon Attack Range setting
+- Verify weapon collider is Trigger
+
+---
+
+## 🚀 Next Steps
+
+1. **Generate Demo Scenes** → See features in action
+2. **Read Tutorials** → Understand how systems work
+3. **Integrate** → Add to your project
+4. **Customize** → Adjust to your game's needs
+5. **Expand** → Combine systems for unique gameplay
+
+---
+
+## 💡 Example: Complete Horror Game in 15 Minutes
+
+1. `Tools > Create Demo Scenes > Horror Showcase`
+2. Bake NavMesh
+3. Wire VisionCone events
+4. Replace placeholder models with your assets
+5. Adjust lighting (darker = scarier)
+6. Add jump scares (VisionCone → OnTargetDetected → Audio.Play)
+7. Build scene layout (import your level)
+8. Done!
+
+---
+
+## 🎯 Feature Roadmap
+
+**Sprint 1 (COMPLETE)**: Movement, Horror, Camera, AI, Interaction, Combat, Audio
+
+**Sprint 2 (Coming)**: Inventory, Save/Load, Advanced AI, Puzzles
+
+**Sprint 3 (Coming)**: VFX, Lighting, Procedural Generation, Stealth
+
+**Sprint 4 (Coming)**: Multiplayer, Narrative, Advanced Puzzles
+
+See [ROADMAP.md](docs/ROADMAP.md) for full list (200+ features).
+
+---
+
+**Happy Game Making! 🎮🎉**
+
+For questions, issues, or contributions, see README.md.

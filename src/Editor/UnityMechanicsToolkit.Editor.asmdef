@@ -1,0 +1,24 @@
+{
+    "name": "UnityMechanicsToolkit.Editor",
+    "rootNamespace": "UnityMechanicsToolkit.Editor",
+    "references": [
+        "UnityMechanicsToolkit.Core",
+        "UnityMechanicsToolkit.Movement",
+        "UnityMechanicsToolkit.AI",
+        "UnityMechanicsToolkit.Horror",
+        "UnityMechanicsToolkit.Camera",
+        "UnityMechanicsToolkit.Interaction",
+        "UnityMechanicsToolkit.Combat"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
