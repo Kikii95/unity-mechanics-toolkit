@@ -9,8 +9,8 @@ namespace UnityMechanicsToolkit.Movement
     public class LeanBehavior : MonoBehaviour
     {
         [Header("Lean Settings")]
-        [SerializeField] private KeyCode leanLeftKey = KeyCode.Q;
-        [SerializeField] private KeyCode leanRightKey = KeyCode.E;
+        [SerializeField] private KeyCode leanLeftKey = KeyCode.A; // AZERTY
+        [SerializeField] private KeyCode leanRightKey = KeyCode.E; // AZERTY
         [SerializeField] private float leanAngle = 15f;
         [SerializeField] private float leanDistance = 0.5f; // Sideways shift
         [SerializeField] private float leanSpeed = 5f;
